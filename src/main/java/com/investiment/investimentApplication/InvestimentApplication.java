@@ -1,13 +1,13 @@
-package com.investimentos.demo;
+package com.investiment.investimentApplication;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class InvestimentApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(InvestimentApplication.class, args);
 	}
 
 }
