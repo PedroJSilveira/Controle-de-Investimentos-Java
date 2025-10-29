@@ -1,7 +1,7 @@
-package com.investiment.investimentApplication.investments.entities;
+package com.investment.investmentApplication.investments.entities.schemas;
 
-import com.investiment.investimentApplication.application.generics.entities.GenericSchema;
-import com.investiment.investimentApplication.investments.dtos.Investment;
+import com.investment.investmentApplication.application.generics.entities.GenericSchema;
+import com.investment.investmentApplication.investments.entities.dtos.Investment;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -16,7 +16,7 @@ import java.util.UUID;
  */
 
 @Entity
-@Table(name = "investiment_schema")
+@Table(name = "investment_schema")
 public class InvestmentSchema extends GenericSchema {
 
     @Id
@@ -45,7 +45,7 @@ public class InvestmentSchema extends GenericSchema {
         this.value = value;
     }
 
-    public InvestmentSchema generate(Investment investment){
+    public static InvestmentSchema generate(Investment investment){
         return new InvestmentSchema(
                 investment.name(),
                 investment.type(),

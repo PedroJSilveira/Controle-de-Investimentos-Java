@@ -8,11 +8,11 @@
 		<version>3.5.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.investimentos</groupId>
-	<artifactId>investimentApplication</artifactId>
+	<groupId>com.investment</groupId>
+	<artifactId>investmentApplication</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>investimentApplication</name>
-	<description>Investiments Apllication</description>
+	<name>investmentApplication</name>
+	<description>Investments Apllication</description>
 	<url/>
 	<licenses>
 		<license/>

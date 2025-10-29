@@ -1,6 +1,6 @@
 spring:
   application:
-    name: investimentApplication
+    name: investmentApplication
 
   datasource:
     url: ${POSTGRES_URL}

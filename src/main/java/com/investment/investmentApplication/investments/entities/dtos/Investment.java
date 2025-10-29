@@ -1,4 +1,4 @@
-package com.investiment.investimentApplication.investments.dtos;
+package com.investment.investmentApplication.investments.entities.dtos;
 
 import java.time.LocalDate;
 

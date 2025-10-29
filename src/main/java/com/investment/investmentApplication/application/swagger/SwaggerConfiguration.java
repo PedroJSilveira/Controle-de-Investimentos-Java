@@ -1,4 +1,4 @@
-package com.investiment.investimentApplication.application.swagger;
+package com.investment.investmentApplication.application.swagger;
 
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
@@ -21,7 +21,7 @@ public class SwaggerConfiguration {
     public OpenAPI swaggerOpenAPI() {
         return new OpenAPI()
                 .info(new Info()
-                        .title("Investiments API")
+                        .title("Investments API")
                         .description("Documentation for Investments API")
                         .contact(new Contact()
                                 .name("Pedro Junho Silveira")

@@ -1,4 +1,4 @@
-package com.investiment.investimentApplication.application.generics.entities;
+package com.investment.investmentApplication.application.generics.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
