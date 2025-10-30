@@ -5,6 +5,8 @@ import jakarta.persistence.MappedSuperclass;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
@@ -15,7 +17,10 @@ import java.time.LocalDate;
  */
 
 @MappedSuperclass
-public class GenericSchema {
+public abstract class GenericSchema implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -3771367461195984435L;
 
     @Column(name = "created_date")
     @CreatedDate

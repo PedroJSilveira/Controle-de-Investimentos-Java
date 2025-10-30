@@ -54,6 +54,13 @@ public class InvestmentSchema extends GenericSchema {
         );
     }
 
+    public void update(Investment investment) {
+        if (investment.name() != null && !investment.name().isEmpty()) this.name = investment.name();
+        if (investment.type() != null && !investment.type().isEmpty()) this.type = investment.type();
+        if (investment.investmentDate() != null) this.investmentDate = investment.investmentDate();
+        if (investment.value() != null) this.value = investment.value();
+    }
+
     public UUID getId() {
         return id;
     }
