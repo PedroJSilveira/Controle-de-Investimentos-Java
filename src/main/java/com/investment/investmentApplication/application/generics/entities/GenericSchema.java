@@ -8,6 +8,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * The Class GenericSchema
@@ -24,41 +25,37 @@ public abstract class GenericSchema implements Serializable {
 
     @Column(name = "created_date")
     @CreatedDate
-    private LocalDate created_date = LocalDate.now();
+    private LocalDateTime createdDate = LocalDateTime.now();
 
     @Column(name = "updated_date")
     @LastModifiedDate
-    private LocalDate updated_date;
+    private LocalDateTime updatedDate;
 
     @Column(name = "disabled")
     private boolean disabled = false;
 
     @Column(name = "disabled_date")
-    private LocalDate disabled_date;
+    private LocalDateTime disabledDate;
 
     public void disable(){
         this.disabled = true;
-        disabled_date = LocalDate.now();
+        disabledDate = LocalDateTime.now();
     }
 
-    public void reactivate(){
-        this.disabled = false;
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public LocalDate getCreated_date() {
-        return created_date;
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public void setCreated_date(LocalDate created_date) {
-        this.created_date = created_date;
+    public LocalDateTime getUpdatedDate() {
+        return updatedDate;
     }
 
-    public LocalDate getUpdated_date() {
-        return updated_date;
-    }
-
-    public void setUpdated_date(LocalDate updated_date) {
-        this.updated_date = updated_date;
+    public void setUpdatedDate(LocalDateTime updatedDate) {
+        this.updatedDate = updatedDate;
     }
 
     public boolean isDisabled() {
@@ -69,11 +66,11 @@ public abstract class GenericSchema implements Serializable {
         this.disabled = disabled;
     }
 
-    public LocalDate getDisabled_date() {
-        return disabled_date;
+    public LocalDateTime getDisabledDate() {
+        return disabledDate;
     }
 
-    public void setDisabled_date(LocalDate disabled_date) {
-        this.disabled_date = disabled_date;
+    public void setDisabledDate(LocalDateTime disabledDate) {
+        this.disabledDate = disabledDate;
     }
 }

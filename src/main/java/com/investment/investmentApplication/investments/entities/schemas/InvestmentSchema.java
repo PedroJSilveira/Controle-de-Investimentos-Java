@@ -5,6 +5,7 @@ import com.investment.investmentApplication.investments.entities.dtos.Investment
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -59,6 +60,7 @@ public class InvestmentSchema extends GenericSchema {
         if (investment.type() != null && !investment.type().isEmpty()) this.type = investment.type();
         if (investment.investmentDate() != null) this.investmentDate = investment.investmentDate();
         if (investment.value() != null) this.value = investment.value();
+        this.setUpdatedDate(LocalDateTime.now());
     }
 
     public UUID getId() {
