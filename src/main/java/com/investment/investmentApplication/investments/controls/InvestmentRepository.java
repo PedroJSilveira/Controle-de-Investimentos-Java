@@ -1,4 +1,4 @@
-package com.investment.investmentApplication.investments.repository;
+package com.investment.investmentApplication.investments.controls;
 
 import com.investment.investmentApplication.investments.entities.schemas.InvestmentSchema;
 import org.springframework.data.jpa.repository.JpaRepository;

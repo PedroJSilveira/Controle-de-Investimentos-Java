@@ -5,6 +5,7 @@ import com.investment.investmentApplication.investments.entities.schemas.Investm
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public interface InvestmentController {
     @ApiResponse(responseCode= "201")
     @PostMapping("/create")
     ResponseEntity<InvestmentSchema> create(
-            @RequestBody Investment investmentCreate
+            @RequestBody @Valid Investment investmentCreate
     );
 
     @Operation(description = "Find all investment")
@@ -48,7 +49,7 @@ public interface InvestmentController {
     @PatchMapping("/update")
     ResponseEntity<InvestmentSchema> update(
             @RequestParam UUID id,
-            @RequestBody Investment investmentUpdate
+            @RequestBody @Valid Investment investmentUpdate
     );
 
     @Operation(description = "Delete investment")
