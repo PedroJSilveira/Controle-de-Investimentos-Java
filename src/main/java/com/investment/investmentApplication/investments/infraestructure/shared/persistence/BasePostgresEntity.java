@@ -1,4 +1,4 @@
-package com.investment.investmentApplication.application.generics.entities;
+package com.investment.investmentApplication.investments.infraestructure.shared.persistence;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
@@ -7,7 +7,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -18,7 +17,7 @@ import java.time.LocalDateTime;
  */
 
 @MappedSuperclass
-public abstract class GenericSchema implements Serializable {
+public abstract class BasePostgresEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -3771367461195984435L;

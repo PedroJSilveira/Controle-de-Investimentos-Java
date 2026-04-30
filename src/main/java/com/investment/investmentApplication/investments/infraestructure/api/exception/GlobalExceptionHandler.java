@@ -1,6 +1,5 @@
-package com.investment.investmentApplication.application.controls.exceptions;
+package com.investment.investmentApplication.investments.infraestructure.api.exception;
 
-import com.investment.investmentApplication.application.controls.entities.ErrorHandling;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,18 +22,18 @@ import java.util.stream.Collectors;
  */
 
 @RestControllerAdvice
-public class ControllerException {
+public class GlobalExceptionHandler {
 
     @ExceptionHandler(MissingServletRequestParameterException.class)
-    public ResponseEntity<ErrorHandling> missingException(MissingServletRequestParameterException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponse> missingException(MissingServletRequestParameterException ex, HttpServletRequest request) {
         String message = "Parameter ".concat(ex.getParameterName()).concat(" is not in the request.");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                ErrorHandling.generate(HttpStatus.BAD_REQUEST.value(), request.getServletPath(), request.getMethod(), message)
+                ErrorResponse.generate(HttpStatus.BAD_REQUEST.value(), request.getServletPath(), request.getMethod(), message)
         );
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ErrorHandling> methodException(MethodArgumentNotValidException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponse> methodException(MethodArgumentNotValidException ex, HttpServletRequest request) {
         List<String> emptyFields = ex.getBindingResult().getFieldErrors().stream()
                 .filter(error -> Objects.equals(error.getCode(), "NotBlank"))
                 .map(FieldError::getField).collect(Collectors.toList());
@@ -44,14 +43,14 @@ public class ControllerException {
                 .map(FieldError::getField).collect(Collectors.toList());
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                ErrorHandling.generate(HttpStatus.BAD_REQUEST.value(), request.getServletPath(), request.getMethod(), message(emptyFields, invalidFields))
+                ErrorResponse.generate(HttpStatus.BAD_REQUEST.value(), request.getServletPath(), request.getMethod(), message(emptyFields, invalidFields))
         );
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ErrorHandling> applicationException(HttpMessageNotReadableException ex, HttpServletRequest request) {
+    public ResponseEntity<ErrorResponse> applicationException(HttpMessageNotReadableException ex, HttpServletRequest request) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
-                ErrorHandling.generate(HttpStatus.BAD_REQUEST.value(), request.getServletPath(), request.getMethod(), "JSON is not formatted")
+                ErrorResponse.generate(HttpStatus.BAD_REQUEST.value(), request.getServletPath(), request.getMethod(), "JSON is not formatted")
         );
     }
     private String message(List<String> emptyFields, List<String> invalidFields) {

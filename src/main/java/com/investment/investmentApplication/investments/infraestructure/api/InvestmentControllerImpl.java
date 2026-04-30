@@ -1,9 +1,9 @@
-package com.investment.investmentApplication.investments.controller;
+package com.investment.investmentApplication.investments.infraestructure.api;
 
-import com.investment.investmentApplication.investments.controller.interfaces.InvestmentController;
-import com.investment.investmentApplication.investments.entities.dtos.Investment;
-import com.investment.investmentApplication.investments.entities.schemas.InvestmentSchema;
-import com.investment.investmentApplication.investments.service.InvestmentServiceImpl;
+import com.investment.investmentApplication.investments.infraestructure.api.interfaces.InvestmentController;
+import com.investment.investmentApplication.investments.domain.investment.Investment;
+import com.investment.investmentApplication.investments.infraestructure.intvestment.persistence.InvestmentPostgresEntity;
+import com.investment.investmentApplication.investments.application.service.InvestmentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,27 +26,27 @@ public class InvestmentControllerImpl implements InvestmentController {
     private final InvestmentServiceImpl investmentService;
 
     @Override
-    public ResponseEntity<InvestmentSchema> create(Investment investmentCreate) {
-        InvestmentSchema investment = investmentService.create(investmentCreate);
+    public ResponseEntity<InvestmentPostgresEntity> create(Investment investmentCreate) {
+        InvestmentPostgresEntity investment = investmentService.create(investmentCreate);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(investment);
     }
 
     @Override
-    public ResponseEntity<List<InvestmentSchema>> findAll() {
+    public ResponseEntity<List<InvestmentPostgresEntity>> findAll() {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(investmentService.findAll());
     }
 
     @Override
-    public ResponseEntity<InvestmentSchema> findById(UUID id) {
+    public ResponseEntity<InvestmentPostgresEntity> findById(UUID id) {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(investmentService.findById(id));
     }
 
     @Override
-    public ResponseEntity<InvestmentSchema> update(UUID id, Investment investmentUpdate) {
-        InvestmentSchema investmentSaved = investmentService.update(id, investmentUpdate);
+    public ResponseEntity<InvestmentPostgresEntity> update(UUID id, Investment investmentUpdate) {
+        InvestmentPostgresEntity investmentSaved = investmentService.update(id, investmentUpdate);
         return ResponseEntity.status(HttpStatus.OK).body(investmentSaved);
     }
 

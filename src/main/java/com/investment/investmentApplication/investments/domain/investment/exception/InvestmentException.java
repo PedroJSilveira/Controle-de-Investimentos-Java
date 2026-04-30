@@ -1,6 +1,6 @@
-package com.investment.investmentApplication.investments.controls.exceptions;
+package com.investment.investmentApplication.investments.domain.investment.exception;
 
-import com.investment.investmentApplication.application.controls.exceptions.ExceptionHandler;
+import com.investment.investmentApplication.investments.domain.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
  */
 public class InvestmentException {
 
-    public static class InvestmentNotFoundException extends ExceptionHandler {
+    public static class InvestmentNotFoundException extends BusinessException {
         public InvestmentNotFoundException() {
             super("Investment not found", HttpStatus.NOT_FOUND);
         }

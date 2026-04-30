@@ -1,7 +1,6 @@
-package com.investment.investmentApplication.investments.entities.dtos;
+package com.investment.investmentApplication.investments.domain.investment;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;

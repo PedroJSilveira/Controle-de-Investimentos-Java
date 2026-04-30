@@ -1,6 +1,5 @@
-package com.investment.investmentApplication.investments.controls;
+package com.investment.investmentApplication.investments.infraestructure.intvestment.persistence;
 
-import com.investment.investmentApplication.investments.entities.schemas.InvestmentSchema;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,20 +14,22 @@ import java.util.UUID;
  * @author Pedro Junho Silveira
  * @since 29/10/2025
  */
-public interface InvestmentRepository extends JpaRepository<InvestmentSchema, UUID> {
+
+
+public interface InvestmentPostgresRepository extends JpaRepository<InvestmentPostgresEntity, UUID> {
 
     @Override
     @Query("""
-          SELECT i FROM InvestmentSchema i
+          SELECT i FROM Investment i
           WHERE i.id = :id
           AND i.disabled = FALSE
     """)
-    Optional<InvestmentSchema> findById(@Param("id") UUID id);
+    Optional<InvestmentPostgresEntity> findById(@Param("id") UUID id);
 
     @Override
     @Query("""
-          SELECT i FROM InvestmentSchema i
-          WHERE i.disabled = FALSE 
+          SELECT i FROM Investment i
+          WHERE i.disabled = FALSE
     """)
-    List<InvestmentSchema> findAll();
+    List<InvestmentPostgresEntity> findAll();
 }

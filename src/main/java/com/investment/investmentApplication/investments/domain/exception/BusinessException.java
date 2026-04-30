@@ -1,22 +1,20 @@
-package com.investment.investmentApplication.application.controls.exceptions;
+package com.investment.investmentApplication.investments.domain.exception;
 
 import org.springframework.http.HttpStatus;
 
 /**
- * The Class ExceptionHandler
+ * The Class BusinessException
  *
  * @author Pedro Junho Silveira
- * @since 30/10/2025
+ * @since 30/04/2026
  */
 
-
-public class ExceptionHandler extends RuntimeException{
-
+public class BusinessException extends  RuntimeException{
     String message;
 
     HttpStatus status;
 
-    public ExceptionHandler(String message, HttpStatus status){
+    public BusinessException(String message, HttpStatus status){
         this.message = message;
         this.status = status;
     }

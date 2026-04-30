@@ -1,7 +1,7 @@
-package com.investment.investmentApplication.investments.entities.schemas;
+package com.investment.investmentApplication.investments.infraestructure.intvestment.persistence;
 
-import com.investment.investmentApplication.application.generics.entities.GenericSchema;
-import com.investment.investmentApplication.investments.entities.dtos.Investment;
+import com.investment.investmentApplication.investments.infraestructure.shared.persistence.BasePostgresEntity;
+import com.investment.investmentApplication.investments.domain.investment.Investment;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -16,9 +16,9 @@ import java.util.UUID;
  * @since 28/10/2025
  */
 
-@Entity
-@Table(name = "investment_schema")
-public class InvestmentSchema extends GenericSchema {
+@Entity(name = "Investment")
+@Table(name = "tb_investment")
+public class InvestmentPostgresEntity extends BasePostgresEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -36,18 +36,18 @@ public class InvestmentSchema extends GenericSchema {
     @Column(name = "value")
     private Double value;
 
-    public InvestmentSchema() {
+    public InvestmentPostgresEntity() {
     }
 
-    private InvestmentSchema(String name, String type, LocalDate investmentDate, Double value) {
+    private InvestmentPostgresEntity(String name, String type, LocalDate investmentDate, Double value) {
         this.name = name;
         this.type = type;
         this.investmentDate = investmentDate;
         this.value = value;
     }
 
-    public static InvestmentSchema generate(Investment investment){
-        return new InvestmentSchema(
+    public static InvestmentPostgresEntity generate(Investment investment){
+        return new InvestmentPostgresEntity(
                 investment.name(),
                 investment.type(),
                 investment.investmentDate(),
@@ -106,7 +106,7 @@ public class InvestmentSchema extends GenericSchema {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        InvestmentSchema that = (InvestmentSchema) o;
+        InvestmentPostgresEntity that = (InvestmentPostgresEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(type, that.type) &&

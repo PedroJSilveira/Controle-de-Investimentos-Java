@@ -1,7 +1,7 @@
-package com.investment.investmentApplication.investments.controller.interfaces;
+package com.investment.investmentApplication.investments.infraestructure.api.interfaces;
 
-import com.investment.investmentApplication.investments.entities.dtos.Investment;
-import com.investment.investmentApplication.investments.entities.schemas.InvestmentSchema;
+import com.investment.investmentApplication.investments.domain.investment.Investment;
+import com.investment.investmentApplication.investments.infraestructure.intvestment.persistence.InvestmentPostgresEntity;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,26 +28,26 @@ public interface InvestmentController {
     @Operation(description = "Create investment")
     @ApiResponse(responseCode= "201")
     @PostMapping("/create")
-    ResponseEntity<InvestmentSchema> create(
+    ResponseEntity<InvestmentPostgresEntity> create(
             @RequestBody @Valid Investment investmentCreate
     );
 
     @Operation(description = "Find all investment")
     @ApiResponse(responseCode = "200")
     @GetMapping("/find-all")
-    ResponseEntity<List<InvestmentSchema>> findAll();
+    ResponseEntity<List<InvestmentPostgresEntity>> findAll();
 
     @Operation(description = "Find investment")
     @ApiResponse(responseCode = "200")
     @GetMapping("/find-by-id")
-    ResponseEntity<InvestmentSchema> findById(
+    ResponseEntity<InvestmentPostgresEntity> findById(
             @RequestParam UUID id
     );
 
     @Operation(description = "Update investment")
     @ApiResponse(responseCode = "200")
     @PatchMapping("/update")
-    ResponseEntity<InvestmentSchema> update(
+    ResponseEntity<InvestmentPostgresEntity> update(
             @RequestParam UUID id,
             @RequestBody @Valid Investment investmentUpdate
     );
