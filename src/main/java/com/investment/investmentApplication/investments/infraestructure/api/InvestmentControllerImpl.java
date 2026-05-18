@@ -1,9 +1,16 @@
 package com.investment.investmentApplication.investments.infraestructure.api;
 
-import com.investment.investmentApplication.investments.infraestructure.api.interfaces.InvestmentController;
+import com.investment.investmentApplication.investments.application.dto.InvestmentUpdate;
+import com.investment.investmentApplication.investments.application.usecases.update_investment_usecase.UpdateInvestmentUseCase;
+import com.investment.investmentApplication.investments.application.usecases.delete_investment_usecase.DeleteInvestmentUseCase;
+import com.investment.investmentApplication.investments.application.dto.InvestmentCreate;
+import com.investment.investmentApplication.investments.application.usecases.create_investment_usecase.CreateInvestmentUseCase;
+import com.investment.investmentApplication.investments.application.usecases.find_all_investment_usecase.FindAllInvestmentUseCase;
+import com.investment.investmentApplication.investments.application.usecases.find_investment_usecase.FindInvestmentUseCase;
 import com.investment.investmentApplication.investments.domain.investment.Investment;
-import com.investment.investmentApplication.investments.infraestructure.intvestment.persistence.InvestmentPostgresEntity;
-import com.investment.investmentApplication.investments.application.service.InvestmentServiceImpl;
+import com.investment.investmentApplication.investments.domain.investment.InvestmentId;
+import com.investment.investmentApplication.investments.infraestructure.api.interfaces.InvestmentController;
+import com.investment.investmentApplication.investments.infraestructure.investment.converter.InvestmentUpdateConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,36 +30,46 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class InvestmentControllerImpl implements InvestmentController {
 
-    private final InvestmentServiceImpl investmentService;
+    private final CreateInvestmentUseCase createInvestment;
+
+    private final FindAllInvestmentUseCase findAllInvestment;
+
+    private final FindInvestmentUseCase findInvestmentUseCase;
+
+    private final UpdateInvestmentUseCase updateInvestmentUseCase;
+
+    private final DeleteInvestmentUseCase deleteInvestmentUseCase;
 
     @Override
-    public ResponseEntity<InvestmentPostgresEntity> create(Investment investmentCreate) {
-        InvestmentPostgresEntity investment = investmentService.create(investmentCreate);
+    public ResponseEntity<Investment> create(InvestmentCreate anInvestmentCreate) {
+        final var investment = createInvestment.execute(anInvestmentCreate);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(investment);
     }
 
     @Override
-    public ResponseEntity<List<InvestmentPostgresEntity>> findAll() {
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(investmentService.findAll());
+    public ResponseEntity<List<Investment>> findAll() {
+        final var investments = findAllInvestment.execute();
+
+        return ResponseEntity.status(HttpStatus.OK).body(investments);
     }
 
     @Override
-    public ResponseEntity<InvestmentPostgresEntity> findById(UUID id) {
-        return ResponseEntity.status(HttpStatus.OK)
-                .body(investmentService.findById(id));
+    public ResponseEntity<Investment> findById(UUID anInvestmentId) {
+        final var investment = findInvestmentUseCase.execute(InvestmentId.from(anInvestmentId));
+
+        return ResponseEntity.status(HttpStatus.OK).body(investment);
     }
 
     @Override
-    public ResponseEntity<InvestmentPostgresEntity> update(UUID id, Investment investmentUpdate) {
-        InvestmentPostgresEntity investmentSaved = investmentService.update(id, investmentUpdate);
-        return ResponseEntity.status(HttpStatus.OK).body(investmentSaved);
+    public ResponseEntity<Investment> update(UUID anInvestmentId, InvestmentUpdate anInvestmentUpdate) {
+        final var investment = updateInvestmentUseCase.execute(InvestmentUpdateConverter.convert(anInvestmentId, anInvestmentUpdate));
+        return ResponseEntity.status(HttpStatus.OK).body(investment);
     }
 
     @Override
-    public ResponseEntity<Void> delete(UUID id) {
-        investmentService.delete(id);
+    public ResponseEntity<Void> delete(UUID anInvestmentId) {
+        deleteInvestmentUseCase.execute(InvestmentId.from(anInvestmentId));
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

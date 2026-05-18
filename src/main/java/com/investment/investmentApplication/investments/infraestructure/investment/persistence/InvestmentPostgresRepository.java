@@ -1,4 +1,4 @@
-package com.investment.investmentApplication.investments.infraestructure.intvestment.persistence;
+package com.investment.investmentApplication.investments.infraestructure.investment.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,8 +1,12 @@
 package com.investment.investmentApplication.investments.infraestructure.api.interfaces;
 
+import com.investment.investmentApplication.investments.application.dto.InvestmentCreate;
 import com.investment.investmentApplication.investments.domain.investment.Investment;
-import com.investment.investmentApplication.investments.infraestructure.intvestment.persistence.InvestmentPostgresEntity;
+import com.investment.investmentApplication.investments.application.dto.InvestmentUpdate;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -25,38 +29,74 @@ import java.util.UUID;
 public interface InvestmentController {
 
 
-    @Operation(description = "Create investment")
+    @Operation(
+            summary = "Create investment",
+            responses = {
+                    @ApiResponse(description = "The Investment",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Investment.class)
+                            )
+                    )
+            }
+    )
     @ApiResponse(responseCode= "201")
     @PostMapping("/create")
-    ResponseEntity<InvestmentPostgresEntity> create(
-            @RequestBody @Valid Investment investmentCreate
+    ResponseEntity<Investment> create(
+            @RequestBody @Valid InvestmentCreate investmentCreate
     );
 
-    @Operation(description = "Find all investment")
+    @Operation(
+            summary = "Find all investment",
+            responses = {
+                    @ApiResponse(description = "All investments",
+                        content = @Content(mediaType = "application/json",
+                                array = @ArraySchema(schema =  @Schema(implementation = Investment.class))
+                        )
+                    ),
+            }
+    )
     @ApiResponse(responseCode = "200")
     @GetMapping("/find-all")
-    ResponseEntity<List<InvestmentPostgresEntity>> findAll();
+    ResponseEntity<List<Investment>> findAll();
 
-    @Operation(description = "Find investment")
+    @Operation(
+            summary = "Find investment",
+            responses = {
+                    @ApiResponse(description = "All investments",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Investment.class)
+                            )
+                    ),
+            }
+    )
     @ApiResponse(responseCode = "200")
     @GetMapping("/find-by-id")
-    ResponseEntity<InvestmentPostgresEntity> findById(
-            @RequestParam UUID id
+    ResponseEntity<Investment> findById(
+            @RequestParam(value = "investmentId") final UUID investmentId
     );
 
-    @Operation(description = "Update investment")
+    @Operation(
+            summary = "Update investment",
+            responses = {
+                    @ApiResponse(description = "The Investment",
+                            content = @Content(mediaType = "application/json",
+                                    schema = @Schema(implementation = Investment.class)
+                            )
+                    )
+            }
+    )
     @ApiResponse(responseCode = "200")
     @PatchMapping("/update")
-    ResponseEntity<InvestmentPostgresEntity> update(
-            @RequestParam UUID id,
-            @RequestBody @Valid Investment investmentUpdate
+    ResponseEntity<Investment> update(
+            @RequestParam(value = "investmentId") UUID investmentId,
+            @RequestBody @Valid InvestmentUpdate investmentUpdate
     );
 
-    @Operation(description = "Delete investment")
+    @Operation(summary = "Delete investment")
     @ApiResponse(responseCode = "204")
     @DeleteMapping("/delete")
     ResponseEntity<Void> delete(
-            @RequestParam UUID id
+            @RequestParam(value = "investmentId") UUID investmentId
     );
 
 }

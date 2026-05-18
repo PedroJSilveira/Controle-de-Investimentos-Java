@@ -3,9 +3,9 @@ spring:
     name: investmentApplication
 
   datasource:
-    url: ${POSTGRES_URL}
-    username: ${POSTGRES_USER}
-    password: ${POSTGRES_PASSWORD}
+    url: jdbc:postgresql://localhost:5432/investments_db
+    username: postgres
+    password: postgres
 
   jpa:
     hibernate:

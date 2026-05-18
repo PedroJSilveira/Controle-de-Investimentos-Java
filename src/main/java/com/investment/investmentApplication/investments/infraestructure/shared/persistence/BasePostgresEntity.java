@@ -36,40 +36,33 @@ public abstract class BasePostgresEntity implements Serializable {
     @Column(name = "disabled_date")
     private LocalDateTime disabledDate;
 
-    public void disable(){
-        this.disabled = true;
-        disabledDate = LocalDateTime.now();
+    public BasePostgresEntity() {}
+
+    public BasePostgresEntity(
+            LocalDateTime createdDate,
+            LocalDateTime updatedDate,
+            boolean disabled,
+            LocalDateTime disabledDate
+    ) {
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
+        this.disabled = disabled;
+        this.disabledDate = disabledDate;
     }
 
     public LocalDateTime getCreatedDate() {
         return createdDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
-        this.createdDate = createdDate;
-    }
-
     public LocalDateTime getUpdatedDate() {
         return updatedDate;
-    }
-
-    public void setUpdatedDate(LocalDateTime updatedDate) {
-        this.updatedDate = updatedDate;
     }
 
     public boolean isDisabled() {
         return disabled;
     }
 
-    public void setDisabled(boolean disabled) {
-        this.disabled = disabled;
-    }
-
     public LocalDateTime getDisabledDate() {
         return disabledDate;
-    }
-
-    public void setDisabledDate(LocalDateTime disabledDate) {
-        this.disabledDate = disabledDate;
     }
 }

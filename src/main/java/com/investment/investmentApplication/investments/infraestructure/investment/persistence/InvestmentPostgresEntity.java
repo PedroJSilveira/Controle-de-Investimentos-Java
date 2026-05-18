@@ -1,8 +1,12 @@
-package com.investment.investmentApplication.investments.infraestructure.intvestment.persistence;
+package com.investment.investmentApplication.investments.infraestructure.investment.persistence;
 
-import com.investment.investmentApplication.investments.infraestructure.shared.persistence.BasePostgresEntity;
 import com.investment.investmentApplication.investments.domain.investment.Investment;
-import jakarta.persistence.*;
+import com.investment.investmentApplication.investments.domain.investment.InvestmentId;
+import com.investment.investmentApplication.investments.infraestructure.shared.persistence.BasePostgresEntity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -21,7 +25,6 @@ import java.util.UUID;
 public class InvestmentPostgresEntity extends BasePostgresEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
 
     @Column(name = "name")
@@ -39,28 +42,51 @@ public class InvestmentPostgresEntity extends BasePostgresEntity {
     public InvestmentPostgresEntity() {
     }
 
-    private InvestmentPostgresEntity(String name, String type, LocalDate investmentDate, Double value) {
-        this.name = name;
-        this.type = type;
-        this.investmentDate = investmentDate;
-        this.value = value;
+    private InvestmentPostgresEntity(
+            LocalDateTime aCreatedAt,
+            LocalDateTime anUpdatedAt,
+            boolean aDisabled,
+            LocalDateTime aDisabledAt,
+            UUID anId,
+            String aName,
+            String aType,
+            LocalDate anInvestmentDate,
+            Double aValue
+    ) {
+        super(aCreatedAt, anUpdatedAt, aDisabled, aDisabledAt);
+        this.id = anId;
+        this.name = aName;
+        this.type = aType;
+        this.investmentDate = anInvestmentDate;
+        this.value = aValue;
     }
 
-    public static InvestmentPostgresEntity generate(Investment investment){
+    public static InvestmentPostgresEntity from(Investment anInvestment) {
         return new InvestmentPostgresEntity(
-                investment.name(),
-                investment.type(),
-                investment.investmentDate(),
-                investment.value()
+                anInvestment.getCreatedAt(),
+                anInvestment.getUpdatedAt(),
+                anInvestment.isDisabled(),
+                anInvestment.getDisabledAt(),
+                anInvestment.getId().getValue(),
+                anInvestment.getName(),
+                anInvestment.getType(),
+                anInvestment.getInvestmentDate(),
+                anInvestment.getValue()
         );
     }
 
-    public void update(Investment investment) {
-        if (investment.name() != null && !investment.name().isEmpty()) this.name = investment.name();
-        if (investment.type() != null && !investment.type().isEmpty()) this.type = investment.type();
-        if (investment.investmentDate() != null) this.investmentDate = investment.investmentDate();
-        if (investment.value() != null) this.value = investment.value();
-        this.setUpdatedDate(LocalDateTime.now());
+    public Investment toDomain() {
+        return Investment.from(
+                getCreatedDate(),
+                getUpdatedDate(),
+                getDisabledDate(),
+                isDisabled(),
+                InvestmentId.from(getId()),
+                getName(),
+                getType(),
+                getInvestmentDate(),
+                getValue()
+        );
     }
 
     public UUID getId() {
