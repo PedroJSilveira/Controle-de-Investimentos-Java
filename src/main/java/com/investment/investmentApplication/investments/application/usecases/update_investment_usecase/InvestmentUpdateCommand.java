@@ -2,6 +2,7 @@ package com.investment.investmentApplication.investments.application.usecases.up
 
 import com.investment.investmentApplication.investments.application.dto.InvestmentUpdate;
 import com.investment.investmentApplication.investments.domain.investment.InvestmentId;
+import com.investment.investmentApplication.investments.domain.investment.Type;
 
 import java.time.LocalDate;
 
@@ -11,7 +12,7 @@ public record InvestmentUpdateCommand(
 
         String name,
 
-        String type,
+        Type type,
 
         LocalDate date,
 

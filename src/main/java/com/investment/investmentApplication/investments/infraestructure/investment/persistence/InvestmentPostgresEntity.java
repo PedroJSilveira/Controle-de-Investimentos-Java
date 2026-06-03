@@ -2,11 +2,9 @@ package com.investment.investmentApplication.investments.infraestructure.investm
 
 import com.investment.investmentApplication.investments.domain.investment.Investment;
 import com.investment.investmentApplication.investments.domain.investment.InvestmentId;
+import com.investment.investmentApplication.investments.domain.investment.Type;
 import com.investment.investmentApplication.investments.infraestructure.shared.persistence.BasePostgresEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -31,7 +29,8 @@ public class InvestmentPostgresEntity extends BasePostgresEntity {
     private String name;
 
     @Column(name = "type")
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     @Column(name = "investment_date")
     private LocalDate investmentDate;
@@ -49,7 +48,7 @@ public class InvestmentPostgresEntity extends BasePostgresEntity {
             LocalDateTime aDisabledAt,
             UUID anId,
             String aName,
-            String aType,
+            Type aType,
             LocalDate anInvestmentDate,
             Double aValue
     ) {
@@ -105,11 +104,11 @@ public class InvestmentPostgresEntity extends BasePostgresEntity {
         this.name = name;
     }
 
-    public String getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

@@ -18,7 +18,7 @@ public class Investment extends Aggregate<InvestmentId> {
 
         private String name;
 
-        private String type;
+        private Type type;
 
         private LocalDate investmentDate;
 
@@ -31,7 +31,7 @@ public class Investment extends Aggregate<InvestmentId> {
                 final boolean aDisabled,
                 final InvestmentId anId,
                 final String aName,
-                final String aType,
+                final Type aType,
                 final LocalDate anInvestmentDate,
                 final Double aValue
         ) {
@@ -63,7 +63,7 @@ public class Investment extends Aggregate<InvestmentId> {
                 final boolean aDisabled,
                 final InvestmentId anId,
                 final String aName,
-                final String aType,
+                final Type aType,
                 final LocalDate anInvestmentDate,
                 final Double aValue
         ) {
@@ -99,7 +99,7 @@ public class Investment extends Aggregate<InvestmentId> {
                 return name;
         }
 
-        public String getType() {
+        public Type getType() {
                 return type;
         }
 
