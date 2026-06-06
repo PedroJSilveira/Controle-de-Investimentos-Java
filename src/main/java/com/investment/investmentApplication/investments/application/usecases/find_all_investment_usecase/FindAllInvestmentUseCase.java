@@ -1,8 +1,8 @@
 package com.investment.investmentApplication.investments.application.usecases.find_all_investment_usecase;
 
-import com.investment.investmentApplication.investments.application.usecases.UnitUseCase;
-import com.investment.investmentApplication.investments.domain.investment.Investment;
-import com.investment.investmentApplication.investments.domain.investment.InvestmentGateway;
+import com.investment.investmentApplication.shared.application.usecases.UnitUseCase;
+import com.investment.investmentApplication.investments.domain.Investment;
+import com.investment.investmentApplication.investments.domain.InvestmentGateway;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

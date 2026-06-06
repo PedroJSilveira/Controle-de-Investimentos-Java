@@ -1,16 +1,15 @@
-package com.investment.investmentApplication.investments.infraestructure.investment;
+package com.investment.investmentApplication.investments.infraestructure;
 
-import com.investment.investmentApplication.investments.domain.investment.Investment;
-import com.investment.investmentApplication.investments.domain.investment.InvestmentGateway;
-import com.investment.investmentApplication.investments.domain.investment.InvestmentId;
-import com.investment.investmentApplication.investments.infraestructure.investment.persistence.InvestmentPostgresEntity;
-import com.investment.investmentApplication.investments.infraestructure.investment.persistence.InvestmentPostgresRepository;
+import com.investment.investmentApplication.investments.domain.Investment;
+import com.investment.investmentApplication.investments.domain.InvestmentGateway;
+import com.investment.investmentApplication.investments.domain.InvestmentId;
+import com.investment.investmentApplication.investments.domain.exception.InvestmentException.InvestmentNotFoundException;
+import com.investment.investmentApplication.investments.infraestructure.persistence.InvestmentPostgresEntity;
+import com.investment.investmentApplication.investments.infraestructure.persistence.InvestmentPostgresRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
-import static com.investment.investmentApplication.investments.domain.investment.exception.InvestmentException.*;
 
 /**
  * The Class InvestmentPostgresDBGateway

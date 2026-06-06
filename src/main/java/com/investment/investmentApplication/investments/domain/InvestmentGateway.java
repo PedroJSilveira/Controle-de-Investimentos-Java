@@ -1,4 +1,4 @@
-package com.investment.investmentApplication.investments.domain.investment;
+package com.investment.investmentApplication.investments.domain;
 
 import org.springframework.stereotype.Component;
 

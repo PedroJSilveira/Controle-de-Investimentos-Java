@@ -1,4 +1,4 @@
-package com.investment.investmentApplication.investments.application.usecases;
+package com.investment.investmentApplication.shared.application.usecases;
 
 /**
  * The Class UseCase

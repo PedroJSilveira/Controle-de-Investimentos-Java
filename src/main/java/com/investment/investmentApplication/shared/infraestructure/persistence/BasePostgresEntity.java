@@ -1,4 +1,4 @@
-package com.investment.investmentApplication.investments.infraestructure.shared.persistence;
+package com.investment.investmentApplication.shared.infraestructure.persistence;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;

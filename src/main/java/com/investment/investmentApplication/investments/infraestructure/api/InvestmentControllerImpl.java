@@ -7,10 +7,10 @@ import com.investment.investmentApplication.investments.application.dto.Investme
 import com.investment.investmentApplication.investments.application.usecases.create_investment_usecase.CreateInvestmentUseCase;
 import com.investment.investmentApplication.investments.application.usecases.find_all_investment_usecase.FindAllInvestmentUseCase;
 import com.investment.investmentApplication.investments.application.usecases.find_investment_usecase.FindInvestmentUseCase;
-import com.investment.investmentApplication.investments.domain.investment.Investment;
-import com.investment.investmentApplication.investments.domain.investment.InvestmentId;
+import com.investment.investmentApplication.investments.domain.Investment;
+import com.investment.investmentApplication.investments.domain.InvestmentId;
 import com.investment.investmentApplication.investments.infraestructure.api.interfaces.InvestmentController;
-import com.investment.investmentApplication.investments.infraestructure.investment.converter.InvestmentUpdateConverter;
+import com.investment.investmentApplication.investments.infraestructure.converter.InvestmentUpdateConverter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

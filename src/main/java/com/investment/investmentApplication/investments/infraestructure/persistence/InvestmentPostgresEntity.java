@@ -1,9 +1,9 @@
-package com.investment.investmentApplication.investments.infraestructure.investment.persistence;
+package com.investment.investmentApplication.investments.infraestructure.persistence;
 
-import com.investment.investmentApplication.investments.domain.investment.Investment;
-import com.investment.investmentApplication.investments.domain.investment.InvestmentId;
-import com.investment.investmentApplication.investments.domain.investment.Type;
-import com.investment.investmentApplication.investments.infraestructure.shared.persistence.BasePostgresEntity;
+import com.investment.investmentApplication.investments.domain.Investment;
+import com.investment.investmentApplication.investments.domain.InvestmentId;
+import com.investment.investmentApplication.investments.domain.Type;
+import com.investment.investmentApplication.shared.infraestructure.persistence.BasePostgresEntity;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;

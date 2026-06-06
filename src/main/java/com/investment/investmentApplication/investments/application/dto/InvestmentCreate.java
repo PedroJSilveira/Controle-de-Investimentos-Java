@@ -1,7 +1,7 @@
 package com.investment.investmentApplication.investments.application.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.investment.investmentApplication.investments.domain.investment.Type;
+import com.investment.investmentApplication.investments.domain.Type;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 import java.time.LocalDate;
@@ -17,7 +17,7 @@ public record InvestmentCreate(
         @Schema(description = "Nome do investimento", example = "Tesouro Direto")
         String name,
 
-        @Schema(description = "Tipo do investimento", example = "Tesouro Direto")
+        @Schema(description = "Tipo do investimento", example = "TESOURO_DIRETO")
         Type type,
 
         @JsonFormat(pattern = "dd/MM/yyyy")

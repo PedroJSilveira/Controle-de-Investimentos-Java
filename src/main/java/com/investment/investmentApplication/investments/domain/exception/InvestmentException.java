@@ -1,6 +1,6 @@
-package com.investment.investmentApplication.investments.domain.investment.exception;
+package com.investment.investmentApplication.investments.domain.exception;
 
-import com.investment.investmentApplication.investments.domain.exception.BusinessException;
+import com.investment.investmentApplication.shared.domain.exception.BusinessException;
 import org.springframework.http.HttpStatus;
 
 /**

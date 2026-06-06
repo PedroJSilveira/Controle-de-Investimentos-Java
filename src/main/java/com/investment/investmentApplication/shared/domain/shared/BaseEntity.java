@@ -1,4 +1,4 @@
-package com.investment.investmentApplication.investments.domain.shared;
+package com.investment.investmentApplication.shared.domain.shared;
 
 import jakarta.persistence.Column;
 import org.springframework.data.annotation.LastModifiedDate;

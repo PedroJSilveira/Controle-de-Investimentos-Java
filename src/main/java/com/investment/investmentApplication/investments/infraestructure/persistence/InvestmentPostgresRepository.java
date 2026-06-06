@@ -1,4 +1,4 @@
-package com.investment.investmentApplication.investments.infraestructure.investment.persistence;
+package com.investment.investmentApplication.investments.infraestructure.persistence;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,7 +22,6 @@ public interface InvestmentPostgresRepository extends JpaRepository<InvestmentPo
     @Query("""
           SELECT i FROM Investment i
           WHERE i.id = :id
-          AND i.disabled = FALSE
     """)
     Optional<InvestmentPostgresEntity> findById(@Param("id") UUID id);
 

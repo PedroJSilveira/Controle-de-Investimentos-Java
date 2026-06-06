@@ -1,4 +1,4 @@
-package com.investment.investmentApplication.investments.domain;
+package com.investment.investmentApplication.shared.domain;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

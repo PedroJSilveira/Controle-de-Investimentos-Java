@@ -1,6 +1,6 @@
-package com.investment.investmentApplication.investments.domain.investment;
+package com.investment.investmentApplication.investments.domain;
 
-import com.investment.investmentApplication.investments.domain.Identifier;
+import com.investment.investmentApplication.shared.domain.Identifier;
 
 import java.util.Objects;
 import java.util.UUID;

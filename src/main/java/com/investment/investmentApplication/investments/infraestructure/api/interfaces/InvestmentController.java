@@ -1,7 +1,7 @@
 package com.investment.investmentApplication.investments.infraestructure.api.interfaces;
 
 import com.investment.investmentApplication.investments.application.dto.InvestmentCreate;
-import com.investment.investmentApplication.investments.domain.investment.Investment;
+import com.investment.investmentApplication.investments.domain.Investment;
 import com.investment.investmentApplication.investments.application.dto.InvestmentUpdate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;

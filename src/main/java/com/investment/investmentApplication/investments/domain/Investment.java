@@ -1,8 +1,8 @@
-package com.investment.investmentApplication.investments.domain.investment;
+package com.investment.investmentApplication.investments.domain;
 
 import com.investment.investmentApplication.investments.application.dto.InvestmentCreate;
 import com.investment.investmentApplication.investments.application.usecases.update_investment_usecase.InvestmentUpdateCommand;
-import com.investment.investmentApplication.investments.domain.Aggregate;
+import com.investment.investmentApplication.shared.domain.Aggregate;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

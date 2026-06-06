@@ -1,4 +1,4 @@
-package com.investment.investmentApplication.investments.domain.exception;
+package com.investment.investmentApplication.shared.domain.exception;
 
 import org.springframework.http.HttpStatus;
 
