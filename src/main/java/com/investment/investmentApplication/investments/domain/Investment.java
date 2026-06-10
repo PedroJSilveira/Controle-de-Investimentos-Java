@@ -90,11 +90,6 @@ public class Investment extends Aggregate<InvestmentId> {
             return this;
         }
 
-        public void disable() {
-            this.disabledAt = LocalDateTime.now();
-            this.disabled = true;
-        }
-
         public String getName() {
                 return name;
         }

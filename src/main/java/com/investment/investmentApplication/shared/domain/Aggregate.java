@@ -30,6 +30,11 @@ public abstract class Aggregate<ID extends Identifier> extends Auditing {
         this.id = anId;
     }
 
+    public void disable() {
+        this.disabledAt = LocalDateTime.now();
+        this.disabled = true;
+    }
+
     protected Aggregate(final ID anId) {
         this.id = anId;
     }
