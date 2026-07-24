@@ -17,4 +17,11 @@ public interface UserPostgresRepository extends JpaRepository<UserPostgresEntity
         AND u.disabled = FALSE
     """)
     Optional<UserPostgresEntity> findById(@Param("id") UUID id);
+
+    @Query("""
+        SELECT u FROM User u
+        WHERE u.email = :email
+        AND u.disabled = FALSE
+    """)
+    Optional<UserPostgresEntity> findByEmail(@Param("email") String email);
 }
