@@ -1,5 +1,6 @@
 package com.investment.investmentApplication.users.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.investment.investmentApplication.shared.domain.Aggregate;
 import com.investment.investmentApplication.users.application.dtos.UserCreate;
 import com.investment.investmentApplication.users.application.usecases.update_user_usecase.UserUpdateCommand;
@@ -15,6 +16,7 @@ public class User extends Aggregate<UserId> {
 
     private String email;
 
+    @JsonIgnore
     private String password;
 
     private LocalDate birthday;
@@ -39,7 +41,7 @@ public class User extends Aggregate<UserId> {
         this.birthday = birthday;
     }
 
-    public static User generate(UserCreate anInput) {
+    public static User generate(UserCreate anInput, String password) {
         return new  User(
                 LocalDateTime.now(),
                 LocalDateTime.now(),
@@ -49,7 +51,7 @@ public class User extends Aggregate<UserId> {
                 anInput.name(),
                 anInput.document(),
                 anInput.email(),
-                anInput.password(),
+                password,
                 anInput.birthday()
         );
     }
@@ -80,11 +82,11 @@ public class User extends Aggregate<UserId> {
         );
     }
 
-    public User update(UserUpdateCommand anUser){
+    public User update(UserUpdateCommand anUser, String password){
         this.name = anUser.name();
         this.document = anUser.document();
         this.email = anUser.email();
-        this.password = anUser.password();
+        this.password = password;
         this.birthday = anUser.birthday();
 
         return this;
