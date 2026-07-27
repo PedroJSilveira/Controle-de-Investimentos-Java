@@ -1,4 +1,4 @@
-ALTER TABLE tb_investment
+ALTER TABLE IF EXISTS tb_investment
     ADD CONSTRAINT chk_investment_type
         CHECK (type IN (
                         'TESOURO_DIRETO',

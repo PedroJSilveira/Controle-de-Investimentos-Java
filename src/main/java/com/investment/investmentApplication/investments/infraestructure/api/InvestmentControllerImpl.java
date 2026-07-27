@@ -11,6 +11,7 @@ import com.investment.investmentApplication.investments.domain.Investment;
 import com.investment.investmentApplication.investments.domain.InvestmentId;
 import com.investment.investmentApplication.investments.infraestructure.api.interfaces.InvestmentController;
 import com.investment.investmentApplication.investments.infraestructure.converter.InvestmentUpdateConverter;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +29,7 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
+@SecurityRequirement(name="bearerAuth")
 public class InvestmentControllerImpl implements InvestmentController {
 
     private final CreateInvestmentUseCase createInvestment;
